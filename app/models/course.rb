@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
   USER_COURSE_ATTRIBUTES_PARAMS = [user_courses_attributes: [:id, :user_id, :_destroy]]
-  COURSE_ATTRIBUTES_PARAMS = [:name, :image, :description, :status
+  COURSE_ATTRIBUTES_PARAMS = [:name, :image, :description, :status,
     :start_date, :end_date]
 
   enum status: [:init, :progress, :finish]
