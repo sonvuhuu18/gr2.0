@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= full_title yield(:title) %> | Training System</title>
+    <title><%= full_title yield(:title) %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
@@ -12,19 +12,11 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <% if user_signed_in? && current_user.is_admin? %>
-      <%= render "layouts/admin_header" %>
-      <div class="container">
-        <%= render "layouts/flash" %>
-        <%= yield %>
-      </div>
-    <% else %>
-      <%= render "layouts/header" %>
-      <div class="container">
-        <%= render "layouts/flash" %>
-        <%= yield %>
-      </div>
-      <%= render "layouts/footer" %>
-    <% end %>
+    <%= render "layouts/header" %>
+    <div class="container">
+      <%= render "layouts/flash" %>
+      <%= yield %>
+    </div>
+    <%= render "layouts/footer" %>
   </body>
 </html>

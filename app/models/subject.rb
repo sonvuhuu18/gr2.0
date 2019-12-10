@@ -1,9 +1,11 @@
 class Subject < ApplicationRecord
   ATTRIBUTES_PARAMS = [:identifier, :description, :course_id]
 
-   belongs_to :course
+  validates :identifier, presence: true
 
-   has_many :user_subjects, dependent: :destroy
+  belongs_to :course
 
-   delegate :name, to: :course, prefix: true, allow_nil: true
+  has_many :user_subjects, dependent: :destroy
+
+  delegate :name, to: :course, prefix: true, allow_nil: true
 end
