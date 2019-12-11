@@ -15,3 +15,31 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+ #footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #eaeaea;
+  padding: 0px;
+
+   p {
+    padding: 10px 10px 0 10px;
+  }
+}
+
+ .status_tag {
+  &.init { background: #8daa92; }
+  &.progress { background: #e29b20; }
+  &.finish { background: #d45f53; }
+}
+
+ .addition_action_items {
+  position: absolute;
+  right: 330px;
+}

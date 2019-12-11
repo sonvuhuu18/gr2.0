@@ -8,7 +8,7 @@ ActiveAdmin.register_page "Dashboard" do
 
       column do
         panel "SuperUser" do
-          table_for User.superuser.order_role.each do |user|
+          table_for User.superusers.order_role.each do |user|
             column(:role)
             column(:id) {|user| link_to user.id, admin_user_path(user)}
             column(:name)

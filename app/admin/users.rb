@@ -1,10 +1,17 @@
 ActiveAdmin.register User do
-  menu :priority => 2
+  menu priority: 2
+
   config.sort_order = "id_asc"
+
   permit_params do
     params = User::ATTRIBUTES_PARAMS if current_user.admin?
     params
   end
+
+  scope :all
+  scope :admins
+  scope :trainers
+  scope :trainees
 
   controller do
     def update_resource object, attributes
@@ -50,8 +57,8 @@ ActiveAdmin.register User do
   end
 
   filter :role, as: :select, collection: User::ROLES
-  filter :name
-  filter :email
+  filter :name_cont, label: "Name"
+  filter :email_cont, label: "Email"
   filter :gender, as: :select, collection: User.genders
   filter :birthday
   filter :created_at
