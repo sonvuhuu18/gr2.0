@@ -1,7 +1,7 @@
 class Course < ApplicationRecord
   ATTRIBUTES_PARAMS = [:name, :image, :description, :status,
     :start_date, :end_date, user_ids: [],
-    subjects_attributes: [:id, :identifier, :description, :_destroy]]
+    course_subjects_attributes: [:id, :course_id, :subject_id, :_destroy]]
 
   enum status: [:init, :progress, :finish]
 
@@ -10,13 +10,12 @@ class Course < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
 
-  has_many :subjects, dependent: :destroy
-  has_many :user_courses, dependent: :destroy
-  has_many :user_subjects, dependent: :destroy
-  has_many :users, through: :user_courses, dependent: :destroy
+  has_many :enrollments, dependent: :destroy
+  has_many :course_subjects, dependent: :destroy
+  has_many :users, through: :enrollments, dependent: :destroy
+  has_many :subjects, through: :course_subjects, dependent: :destroy
 
-  accepts_nested_attributes_for :subjects,
-    reject_if: proc {|attributes| attributes["identifier"].blank?}, allow_destroy: true
+  accepts_nested_attributes_for :course_subjects, allow_destroy: true
 
   scope :init_courses, ->{where status: :init}
   scope :progress_courses, ->{where status: :progress}
@@ -29,9 +28,9 @@ class Course < ApplicationRecord
     end
   end
 
-  def update_course_and_user_courses status
+  def update_course_and_enrollments status
     self.update_attributes status: status
-    user_courses.update_all status: status
+    enrollments.update_all status: status
   end
 
   def course_superusers

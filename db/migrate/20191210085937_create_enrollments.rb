@@ -1,6 +1,6 @@
-class CreateUserCourses < ActiveRecord::Migration[5.2]
+class CreateEnrollments < ActiveRecord::Migration[5.2]
   def change
-    create_table :user_courses do |t|
+    create_table :enrollments do |t|
       t.references :user, foreign_key: true
       t.references :course, foreign_key: true
       t.integer :status, default: 0
@@ -8,6 +8,6 @@ class CreateUserCourses < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :user_courses, [:user_id, :course_id], unique: true
+    add_index :enrollments, [:user_id, :course_id], unique: true
   end
 end

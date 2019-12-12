@@ -8,10 +8,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
-  has_many :user_courses, dependent: :destroy
-  has_many :user_subjects, dependent: :destroy
-  has_many :courses, through: :user_courses, dependent: :destroy
-  has_many :subjects, through: :user_subjects, dependent: :destroy
+  has_many :enrollments, dependent: :destroy
+  has_many :courses, through: :enrollments, dependent: :destroy
 
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 
@@ -23,7 +21,7 @@ class User < ApplicationRecord
   scope :trainee_available_for_course, ->course_id{where QUERY, course_id: course_id}
 
   QUERY = "id NOT IN (SELECT user_id
-    FROM user_courses, courses WHERE user_courses.course_id = courses.id
+    FROM enrollments, courses WHERE enrollments.course_id = courses.id
     AND (courses.status = 0 OR courses.status = 1)
     AND courses.id <> :course_id) AND role = 'trainee'"
 

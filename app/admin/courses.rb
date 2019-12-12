@@ -66,9 +66,8 @@ ActiveAdmin.register Course do
       end
       tab "Add Subjects" do
         f.inputs do
-          f.has_many :subjects, allow_destroy: true, heading: "Add Subjects" do |s|
-            s.input :identifier
-            s.input :description
+          f.has_many :course_subjects, allow_destroy: true, heading: "Select Subjects" do |s|
+            s.input :subject, collection: Subject.all.map{|sub| [sub.identifier, sub.id]}
           end
         end
       end
@@ -93,19 +92,19 @@ ActiveAdmin.register Course do
 
   member_action :start_course, method: :put do
     course = Course.find params[:id]
-    course.update_course_and_user_courses :progress
+    course.update_course_and_enrollments :progress
     redirect_to admin_course_path(course)
   end
 
   member_action :finish_course, method: :put do
     course = Course.find params[:id]
-    course.update_course_and_user_courses :finish
+    course.update_course_and_enrollments :finish
     redirect_to admin_course_path(course)
   end
 
   member_action :reopen_course, method: :put do
     course = Course.find params[:id]
-    course.update_course_and_user_courses :progress
+    course.update_course_and_enrollments :progress
     redirect_to admin_course_path(course)
   end
 
@@ -136,8 +135,8 @@ ActiveAdmin.register Course do
   end
 
   sidebar "Subjects", only: :show do
-    course.subjects.collect do |s|
-      link_to s.identifier, admin_subject_path(s)
+    course.course_subjects.collect do |cs|
+      link_to cs.subject.identifier, admin_subject_path(cs.subject)
     end.join(content_tag("br")).html_safe
   end
 end
