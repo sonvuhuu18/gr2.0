@@ -4,15 +4,15 @@ ActiveAdmin.register Subject do
 
   index do
     id_column
-    column :identifier
+    column :name
     column :description
     actions
   end
 
-  show do
+  show title: :name do
     attributes_table do
       row :id
-      row :identifier
+      row :name
       row :description
       row :created_at
     end
@@ -21,18 +21,12 @@ ActiveAdmin.register Subject do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs do
-      f.input :identifier
-      f.input :description
+      f.input :name
+      f.input :description, input_html: {rows: 4}
     end
     f.actions
   end
 
-  # sidebar "Trainees", only: :show do
-  #   subject.subject_trainees.collect do |u|
-  #     auto_link(u)
-  #   end.join(content_tag("br")).html_safe
-  # end
-
-  filter :identifier_cont, label: "Identifier"
+  filter :name_cont, label: I18n.t("active_admin.name")
   filter :created_at
 end

@@ -21,25 +21,35 @@ html {
   min-height: 100%;
 }
 
- #footer {
+#main_content_wrapper {
+  margin-bottom: 40px;
+}
+
+#footer {
   position: absolute;
   bottom: 0;
   width: 100%;
+  height: 40px;
   border-top: 1px solid #eaeaea;
   padding: 0px;
 
-   p {
+  p {
     padding: 10px 10px 0 10px;
   }
 }
 
- .status_tag {
+.status_tag {
   &.init { background: #8daa92; }
   &.progress { background: #e29b20; }
   &.finish { background: #d45f53; }
 }
 
- .addition_action_items {
+.addition_action_items {
   position: absolute;
   right: 330px;
+}
+
+.cke_chrome {
+  width: calc(80% - 2px) !important;
+  overflow: hidden;
 }

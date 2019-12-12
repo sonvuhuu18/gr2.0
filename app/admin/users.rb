@@ -13,14 +13,39 @@ ActiveAdmin.register User do
   scope :trainers
   scope :trainees
 
-  controller do
-    def update_resource object, attributes
-      update_method = attributes.first[:password].present? ?
-        :update_attributes : :update_without_password
-      object.send update_method, *attributes
+  #index
+  index do
+    id_column
+    column :role
+    column :name
+    column :email
+    column :gender
+    column :birthday
+    column :created_at
+    actions
+  end
+
+  filter :role, as: :select, collection: User::ROLES
+  filter :name_cont, label: I18n.t("active_admin.name")
+  filter :email_cont, label: I18n.t("active_admin.email")
+  filter :gender, as: :select, collection: User.genders
+  filter :birthday
+  filter :created_at
+
+  #show
+  sidebar I18n.t("active_admin.user_details"), :only => :show do
+    attributes_table_for user, :id, :role, :name, :email, :gender, :birthday,
+      :created_at, :updated_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at
+  end
+
+  sidebar I18n.t("active_admin.training_history"), :only => :show do
+    attributes_table_for user do
+      row(I18n.t "active_admin.total_courses") {user.courses.count}
+      row(I18n.t "active_admin.total_subjects") {user.subjects.count}
     end
   end
 
+  #new & edit
   form do |f|
     f.semantic_errors *f.object.errors.keys
     if f.object.new_record?
@@ -36,16 +61,16 @@ ActiveAdmin.register User do
       end
     else
       tabs do
-        tab "Basic" do
-          f.inputs "Basic Details" do
+        tab I18n.t("active_admin.basic") do
+          f.inputs I18n.t("active_admin.basic_details") do
             f.input :name
             f.input :email
             f.input :gender
             f.input :birthday, as: :datepicker
           end
         end
-        tab "Advanced" do
-          f.inputs "Advanced Details" do
+        tab I18n.t("active_admin.advanced") do
+          f.inputs I18n.t("active_admin.advanced_details") do
             f.input :role, as: :select, collection: User::ROLES, include_blank: false
             f.input :password
             f.input :password_confirmation
@@ -56,33 +81,11 @@ ActiveAdmin.register User do
     f.actions
   end
 
-  filter :role, as: :select, collection: User::ROLES
-  filter :name_cont, label: "Name"
-  filter :email_cont, label: "Email"
-  filter :gender, as: :select, collection: User.genders
-  filter :birthday
-  filter :created_at
-
-  index do
-    id_column
-    column :role
-    column :name
-    column :email
-    column :gender
-    column :birthday
-    column :created_at
-    actions
-  end
-
-  sidebar "User Details", :only => :show do
-    attributes_table_for user, :id, :role, :name, :email, :gender, :birthday,
-      :created_at, :updated_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at
-  end
-
-  sidebar "Training History", :only => :show do
-    attributes_table_for user do
-      row("Total Courses") { user.courses.count }
-      row("Total Subjects") { user.subjects.count }
+  controller do
+    def update_resource object, attributes
+      update_method = attributes.first[:password].present? ?
+        :update_attributes : :update_without_password
+      object.send update_method, *attributes
     end
   end
 end

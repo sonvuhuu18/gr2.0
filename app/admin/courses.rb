@@ -9,6 +9,7 @@ ActiveAdmin.register Course do
 
   index do
     id_column
+    column :code
     column :name
     column :status do |course|
       status_tag course.status
@@ -22,9 +23,13 @@ ActiveAdmin.register Course do
   show do
     attributes_table do
       row :id
+      row :code
       row :name
       row :image
       row :description
+      row :content do
+        course.content.html_safe
+      end
       row :status do |course|
         status_tag course.status
       end
@@ -33,10 +38,10 @@ ActiveAdmin.register Course do
       row :created_at
     end
 
-    panel "Subjects" do
+    panel I18n.t("active_admin.subjects") do
       table_for course.subjects.each do |s|
-        column :identifier do |s|
-          link_to s.identifier, admin_subject_path(s)
+        column :name do |s|
+          link_to s.name, admin_subject_path(s)
         end
         column :description
       end
@@ -48,9 +53,11 @@ ActiveAdmin.register Course do
     tabs do
       tab "Course" do
         f.inputs "Course Basic" do
+          f.input :code
           f.input :name
           f.input :image
-          f.input :description
+          f.input :description, input_html: {rows: 4}
+          f.input :content, as: :ckeditor
           f.input :start_date, as: :datepicker
           f.input :end_date, as: :datepicker
         end
@@ -67,7 +74,7 @@ ActiveAdmin.register Course do
       tab "Add Subjects" do
         f.inputs do
           f.has_many :course_subjects, allow_destroy: true, heading: "Select Subjects" do |s|
-            s.input :subject, collection: Subject.all.map{|sub| [sub.identifier, sub.id]}
+            s.input :subject, collection: Subject.all.map{|sub| [sub.name, sub.id]}
           end
         end
       end
@@ -85,11 +92,6 @@ ActiveAdmin.register Course do
       class: "addition_action_items", method: :put if course.progress?
   end
 
-  action_item :reopen_course, only: :show do
-    link_to "Reopen", reopen_course_admin_course_path(course),
-      class: "addition_action_items", method: :put if course.finish?
-  end
-
   member_action :start_course, method: :put do
     course = Course.find params[:id]
     course.update_course_and_enrollments :progress
@@ -102,13 +104,8 @@ ActiveAdmin.register Course do
     redirect_to admin_course_path(course)
   end
 
-  member_action :reopen_course, method: :put do
-    course = Course.find params[:id]
-    course.update_course_and_enrollments :progress
-    redirect_to admin_course_path(course)
-  end
-
-  filter :name_cont, label: "Name"
+  filter :code_cont, label: I18n.t("active_admin.code")
+  filter :name_cont, label: I18n.t("active_admin.name")
   filter :status, as: :select, collection: Course.statuses
   filter :start_date
   filter :end_date
@@ -136,7 +133,7 @@ ActiveAdmin.register Course do
 
   sidebar "Subjects", only: :show do
     course.course_subjects.collect do |cs|
-      link_to cs.subject.identifier, admin_subject_path(cs.subject)
+      link_to cs.subject.name, admin_subject_path(cs.subject)
     end.join(content_tag("br")).html_safe
   end
 end

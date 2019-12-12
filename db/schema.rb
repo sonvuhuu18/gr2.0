@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_050258) do
+ActiveRecord::Schema.define(version: 2019_12_12_073421) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2019_12_11_050258) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
   create_table "course_subjects", force: :cascade do |t|
     t.integer "course_id"
     t.integer "subject_id"
@@ -53,14 +63,17 @@ ActiveRecord::Schema.define(version: 2019_12_11_050258) do
   end
 
   create_table "courses", force: :cascade do |t|
+    t.string "code"
     t.string "name"
     t.string "image"
     t.text "description"
+    t.text "content"
     t.integer "status", default: 0
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_courses_on_code", unique: true
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -75,7 +88,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_050258) do
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.string "identifier"
+    t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

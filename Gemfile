@@ -18,7 +18,9 @@ gem "cancancan"
 gem "inherited_resources"
 gem "activeadmin"
 gem "formtastic"
-
+gem "ckeditor", :git => "git@github.com:galetahub/ckeditor.git"
+gem "carrierwave"
+gem "mini_magick"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
