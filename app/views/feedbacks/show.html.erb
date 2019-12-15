@@ -1,0 +1,16 @@
+<div>
+  <%= @feedback.title %>
+</div>
+<div>
+  <%= @feedback.content.html_safe %>
+</div>
+<div>
+ <%= @feedback.status %>
+</div>
+<div>
+<%= @feedback.created_at %>
+</div>
+
+<%= link_to t("button.edit"), edit_feedback_path, class: "btn btn-primary" %>
+<%= link_to t("button.delete"), @feedback, method: :delete,
+  data: {confirm: t("button.delete_confirmation")}, class: "btn btn-danger" %>

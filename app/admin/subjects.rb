@@ -16,6 +16,8 @@ ActiveAdmin.register Subject do
       row :description
       row :created_at
     end
+
+    active_admin_comments
   end
 
   form do |f|

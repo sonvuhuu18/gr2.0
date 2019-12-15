@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :enrollments, dependent: :destroy
   has_many :courses, through: :enrollments, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 

@@ -42,6 +42,11 @@ html {
   &.init { background: #8daa92; }
   &.progress { background: #e29b20; }
   &.finish { background: #d45f53; }
+  &.pending { background: grey; }
+  &.in_progress { background: #5bc0de; }
+  &.under_consideration { background: #f0ad4e; }
+  &.implemented { background: #5cb85c; }
+  &.rejected { background: #d9534f; }
 }
 
 .addition_action_items {

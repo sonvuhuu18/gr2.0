@@ -16,4 +16,19 @@ module ApplicationHelper
     when :success then "alert-success"
     end
   end
+
+  def feedback_label status
+    case status
+    when "pending"
+      "default"
+    when "in_progress"
+      "info"
+    when "under_consideration"
+      "warning"
+    when "implemented"
+      "success"
+    when "rejected"
+      "danger"
+    end
+  end
 end

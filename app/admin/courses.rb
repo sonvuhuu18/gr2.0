@@ -46,6 +46,8 @@ ActiveAdmin.register Course do
         column :description
       end
     end
+
+    active_admin_comments
   end
 
   form do |f|

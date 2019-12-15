@@ -1,0 +1,30 @@
+<% provide :title, t("feedback.index") %>
+<h1><%= t "feedback.index" %></h1>
+
+<%= link_to t("feedback.new"), new_feedback_path, class: "btn btn-primary" %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t "feedback.title" %></th>
+      <th><%= t "feedback.status" %></th>
+      <th><%= t "created_at" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @feedbacks.each do |feedback| %>
+      <tr>
+        <td class="clickable-row" data-href="<%= feedback_path feedback %>">
+          <%= feedback.title %>
+        </td>
+        <td>
+          <span class="label label-<%= feedback_label feedback.status %>">
+            <%= feedback.status %></span>
+        </td>
+        <td class="clickable-row" data-href="<%= feedback_path feedback %>">
+          <%= feedback.created_at.strftime t "time_format" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
