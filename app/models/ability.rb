@@ -3,26 +3,33 @@ class Ability
 
   def initialize user
     user ||= User.new
-    alias_action :create, :update, :destroy, to: :cud
+    alias_action :read, :update, :destroy, to: :rud
     case user.role
     when "admin"
       can :manage, :all
-      can :assign_roles, User
-      cannot :destroy, User, id: user.id
       cannot :create, Feedback
     when "trainer"
-      can :manage, :all
-      cannot :cud, User
-      cannot :cud, Feedback
-    else
-      can :manage, User, id: user.id
+      can :read, ActiveAdmin::Page, name: "Dashboard"
       can :read, User
-      can :read, Course
+      can :update, User, id: user.id
+      can [:read, :update], Course, id: user.course_ids
+      can [:read, :batch_action], Enrollment, course: {id: user.course_ids}
+      can :create, Subject
+      can :manage, Subject
+      can :manage, Feedback, user_id: user.id
+      can :create, ActiveAdmin::Comment
+      can :manage, ActiveAdmin::Comment, author_id: user.id
+      can :manage, Conversation
+      can :manage, Message
+    else
+      can :read, User
+      can :update, User, id: user.id
+      can :read, Course, id: user.course_ids
       can :read, Enrollment, user_id: user.id
       can :read, Subject
       can :manage, Feedback, user_id: user.id
       can :manage, Conversation
-      can :manage, Message, user_id: user.id
+      can :manage, Message
     end
   end
 end

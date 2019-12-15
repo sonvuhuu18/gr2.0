@@ -12,10 +12,15 @@ body {
   padding-top: 80px;
   padding-bottom: 20px;
   margin-bottom: 40px;
+  font-family: Tahoma, Geneva, sans-serif;
 }
 
 .center {
   text-align: center;
+}
+
+a:link {
+  text-decoration: none;
 }
 
 a:hover {
@@ -46,7 +51,27 @@ li {
   list-style: none;
 }
 
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 970px;
+  }
+}
+
 /* header */
+
+.logo {
+  img {
+    height: 50px;
+    float: left;
+    margin-right: 10px;
+  }
+}
 
 /* footer */
 
@@ -74,7 +99,6 @@ footer ul li {
 }
 
 /* conversation */
-
 * {
   margin: 0;
   padding: 0;
@@ -93,8 +117,12 @@ html {
   }
 }
 
+.chat-font {
+  font-size: 0.8em;
+}
+
 .button-transition {
-  transform: translate3d(-300px, 0, 0);
+  transform: translate3d(-220px, 0, 0);
 }
 
 .title {
@@ -108,14 +136,12 @@ html {
   font-weight: 600;
 }
 
-.button {
+.chat-button {
   transition: transform 0.3s ease-in-out;
-  position: absolute;
-  bottom: 60px;
+  position: fixed;
+  bottom: 20px;
   right: 20px;
-  font-family: "Lato";
   -webkit-appearance: none;
-  font-size: 1rem;
   line-height: 1.2;
   border-radius: 3px;
   border: 3px solid #343436;
@@ -131,6 +157,7 @@ html {
   padding: 10px 16px;
   padding-left: 30px;
   outline: 0;
+  z-index: 1000;
 
   &:before {
     position: absolute;
@@ -150,23 +177,26 @@ html {
   }
 
   &:active {
-    bottom: 57px;
+    bottom: 17px;
   }
 }
 
 .chat {
-  position: absolute;
+  position: fixed;
   background: #28282B;
   top: 50px;
-  right: -300px;
-  height: calc(100% - 90px);
-  width: 300px;
+  right: -220px;
+  height: calc(100% - 50px);
+  width: 220px;
+  padding: 0px;
+  z-index: 1000;
+  overflow-y: scroll;
 }
 
 .chat__human {
   display: block;
   width: 100%;
-  padding: 10px 20px;
+  padding: 5px 10px;
   color: white;
   transition: 0.3s;
   cursor: pointer;
@@ -211,11 +241,12 @@ li.chat__human a {
 }
 
 .conversation {
-  position: absolute;
-  bottom: 40px;
-  right: 150px;
+  position: fixed;
+  bottom: 0px;
+  right: 120px;
   width: 270px;
   background: black;
+  z-index: 1000;
 }
 
 .conversation__header {
@@ -244,7 +275,6 @@ li.chat__human a {
   margin: 10px 9px 10px 8px;
   color: white;
   list-style-type: none;
-  font-size: 12px;
 
   span {
     background: white;
@@ -262,11 +292,10 @@ li.chat__human a {
   color: white !important;
 }
 
-.input {
-  position: absolute;
+.chat-input {
   bottom: 0;
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   background: lighten(black, 4%)
       ;
   border: 0;
@@ -282,6 +311,6 @@ li.chat__human a {
 
 .close-msg {
   float: right;
-  font-size: 20px;
+  font-size: 1.5em;
   margin-top: -4px;
 }

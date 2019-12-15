@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   ActiveAdmin.routes(self)
   devise_for :users
-  root "static_pages#home"
+  root "courses#index"
   get "/help", to: "static_pages#help"
   get "/about", to: "static_pages#about"
   get "/contact", to: "static_pages#contact"
@@ -15,4 +15,7 @@ Rails.application.routes.draw do
       post :close
     end
   end
+  resources :courses, only: [:index, :show]
+  resources :subjects, only: [:show]
+  resources :enrollments, :show
 end

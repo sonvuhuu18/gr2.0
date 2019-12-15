@@ -1,0 +1,2 @@
+<%= column_chart Course.active_courses.group(:status).count,
+  xtitle: "Course status", ytitle: "Number of Courses" %>

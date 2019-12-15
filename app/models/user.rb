@@ -3,11 +3,13 @@ class User < ApplicationRecord
     :password_confirmation, :avatar, :avatar_cache, :birthday, :gender, :role]
 
   ROLES = %w[admin trainer trainee]
+  ASSIGN_ROLES = %w[trainee trainer]
 
   mount_uploader :avatar, ImageUploader
 
   enum gender: [:female, :male]
 
+  validate :check_birthday, on: [:create, :update]
   validates :name, presence: true
 
   has_many :enrollments, dependent: :destroy
@@ -28,8 +30,15 @@ class User < ApplicationRecord
 
   QUERY = "id NOT IN (SELECT user_id
     FROM enrollments, courses WHERE enrollments.course_id = courses.id
-    AND (courses.status = 0 OR courses.status = 1)
+    AND (enrollments.status = 0 OR enrollments.status = 1)
     AND courses.id <> :course_id) AND role = 'trainee'"
+
+  def check_birthday
+    unless self.birthday.nil?
+      errors.add :birthday, I18n.t("error.wrong_birthday") if
+        self.birthday > (Date.today - 18.year)
+    end
+  end
 
   def admin?
     self.role == "admin"
@@ -41,6 +50,10 @@ class User < ApplicationRecord
 
   def trainee?
     self.role == "trainee"
+  end
+
+  def enrollments_active
+    enrollments.active_trainee_courses.reverse
   end
 
   class << self

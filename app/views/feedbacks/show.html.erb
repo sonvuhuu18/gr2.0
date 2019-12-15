@@ -1,16 +1,28 @@
-<div>
-  <%= @feedback.title %>
-</div>
-<div>
-  <%= @feedback.content.html_safe %>
-</div>
-<div>
- <%= @feedback.status %>
-</div>
-<div>
-<%= @feedback.created_at %>
-</div>
+<li class="list-group-item">
+  <dl class="dl-horizontal">
+    <dt><strong><%= t "feedback.title" %></strong></dt>
+    <dd><%= @feedback.title %></dd>
 
-<%= link_to t("button.edit"), edit_feedback_path, class: "btn btn-primary" %>
-<%= link_to t("button.delete"), @feedback, method: :delete,
-  data: {confirm: t("button.delete_confirmation")}, class: "btn btn-danger" %>
+    <dt><strong><%= t "feedback.content" %></strong></dt>
+    <dd><%= @feedback.content.html_safe %></dd>
+
+    <dt><strong><%= t "feedback.status" %></strong></dt>
+    <dd>
+      <span class="label label-<%= feedback_label @feedback.status %>"><%= @feedback.status %></span>
+    </dd>
+
+    <dt><strong><%= t "courses.created_at" %></strong></dt>
+    <dd>
+      <span class="text-muted">
+        <%= @feedback.created_at %>
+      </span>
+    </dd>
+
+    <dt><strong><%= t "feedback.actions" %></strong></dt>
+    <dd>
+      <%= link_to t("button.edit"), edit_feedback_path, class: "btn btn-primary" %>
+      <%= link_to t("button.delete"), @feedback, method: :delete,
+        data: {confirm: t("button.delete_confirmation")}, class: "btn btn-danger" %>
+    </dd>
+  </dl>
+</li>

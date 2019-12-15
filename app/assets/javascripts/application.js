@@ -48,15 +48,15 @@ $(document).on('change', '#user_avatar', function() {
 })();
 
 $(document).on('click', '.js-trigger', function() {
-    $('.js-trigger').toggleClass('button-transition')
-    if ($('.chat').css('right') == '-300px') {
-      $('.chat').animate({right: "+=300px"}, 300);
-      $('.conversation').animate({right: "+=300px"}, 300);
-    }
-    else {
-      $('.chat').animate({right: "-=300px"}, 300);
-      $('.conversation').animate({right: "-=300px"}, 300);
-    }
+  $('.js-trigger').toggleClass('button-transition')
+  if ($('.chat').css('right') == '-220px') {
+    $('.chat').animate({right: "+=220px"}, 300);
+    $('.conversation').animate({right: "+=220px"}, 300);
+  }
+  else {
+    $('.chat').animate({right: "-=220px"}, 300);
+    $('.conversation').animate({right: "-=220px"}, 300);
+  }
 });
 
 var intervalId;

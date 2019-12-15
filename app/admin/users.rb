@@ -11,13 +11,15 @@ ActiveAdmin.register User do
   scope :trainers
   scope :trainees
 
+  config.batch_actions = false
+
   config.sort_order = "order_role"
 
   #index
   index do
     id_column
     column :role
-    column :avatar do |user| image_index user end
+    column :avatar do |user| image_sm user end
     column :name
     column :email
     column :gender
@@ -42,8 +44,7 @@ ActiveAdmin.register User do
       row :gender
       row :birthday
       row :avatar do
-        image_tag user.avatar_url, class: "img-responsive",
-          size: Settings.admin.user_show_avatar if user.avatar?
+        image_md user
       end
       row :created_at
       row :updated_at
@@ -78,7 +79,7 @@ ActiveAdmin.register User do
         f.input :birthday, as: :datepicker
         f.input :avatar, as: :file, id: "user_avatar", hint: image_preview(f.object)
         f.input :avatar_cache, as: :hidden
-        f.input :role, as: :select, collection: User::ROLES, include_blank: false,
+        f.input :role, as: :select, collection: User::ASSIGN_ROLES, include_blank: false,
           selected: "trainee"
         f.input :password
         f.input :password_confirmation
@@ -95,7 +96,7 @@ ActiveAdmin.register User do
         end
         tab I18n.t("active_admin.advanced") do
           f.inputs I18n.t("active_admin.advanced_details") do
-            f.input :role, as: :select, collection: User::ROLES, include_blank: false
+            f.input :role, as: :select, collection: User::ASSIGN_ROLES, include_blank: false
             f.input :password
             f.input :password_confirmation
           end

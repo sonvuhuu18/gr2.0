@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     get_root_path
   end
 
+  def after_sign_out_path_for resource
+    new_user_session_path
+  end
+
   def access_denied exception
     redirect_to get_root_path, alert: exception.message
   end

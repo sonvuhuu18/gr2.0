@@ -1,0 +1,82 @@
+<%= render "conversations/index" %>
+
+ <div id="user-course-show">
+  <div class="row">
+    <div class="cell">
+      <div class="grid">
+        <div class="grid-box grid-box-10">
+          <div class="breadcrumb-bar tac tal--l">
+            <ul class="list breadcrumb mts">
+              <li>
+                <%= link_to root_url do %>
+                  <i class="glyphicon glyphicon-th-list"></i>
+                  <%= t "layout.home" %>
+                <% end %>
+              </li>
+              <li><%= link_to t("course.all_courses"), courses_path %></li>
+              <li class="active"><%= "#{@course.code} - #{@course.name}" %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row has-sector">
+    <div class="cell">
+      <div class="grid grid-box-subjects">
+        <div class="grid-box grid-box-75">
+          <div class="well well--l">
+            <div class="mbl">
+              <div class="mbl--m">
+                <h2 class="label"><%= @course.name %></h2>
+                <div class="row">
+                  <p><b><i>"<%= @course.description %>"</i></b></p>
+                </div>
+                <div class="row">
+                  <p><%= sanitize @course.content %></p>
+                </div>
+              </div>
+              <h2 class="label mbm"><%= t "course.list_subjects" %></h2>
+              <ol class="list list--divided list--divided--m list--divided--f
+                list--divided--open mlm--l timeline">
+                <% @course.subjects.each do |user_subject| %>
+                  <hr />
+                  <li class="list-item mbm pbm por space" id="course-overview">
+                    <div class="bucket bucket--flag">
+                      <div class="bucket-media dn db--m">
+                        <div >
+                          <%= trainee_image_md user_subject %>
+                        </div>
+                      </div>
+                      <div class="bucket-content">
+                        <h3 class="h h--3">
+                          <%= link_to user_subject.name,
+                            subject_path(user_subject) %>
+                        </h3>
+                        <p class="mbf"><%= user_subject.description %></p>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="grid-box grid-box-25 sector">
+          <div class="well well--l">
+            <div class="card">
+              <div id="image-course">
+                <%= trainee_image_lg @course %>
+              </div>
+            </div>
+            <div class="sector-content">
+              <%= render partial: "shared/list_member",
+                locals: {trainers: @trainers, trainees: @trainees} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

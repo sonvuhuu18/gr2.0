@@ -26,6 +26,8 @@ gem "redis"
 gem "jquery-ui-rails"
 gem "rails-assets-holderjs", source: "https://rails-assets.org"
 gem "config"
+gem "chartkick"
+gem "faker", github: "stympy/faker"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
