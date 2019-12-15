@@ -1,8 +1,6 @@
 ActiveAdmin.register User do
   menu priority: 2
 
-  config.sort_order = "id_asc"
-
   permit_params do
     params = User::ATTRIBUTES_PARAMS if current_user.admin?
     params
@@ -13,10 +11,13 @@ ActiveAdmin.register User do
   scope :trainers
   scope :trainees
 
+  config.sort_order = "order_role"
+
   #index
   index do
     id_column
     column :role
+    column :avatar do |user| image_index user end
     column :name
     column :email
     column :gender
@@ -33,15 +34,36 @@ ActiveAdmin.register User do
   filter :created_at
 
   #show
-  sidebar I18n.t("active_admin.user_details"), :only => :show do
-    attributes_table_for user, :id, :role, :name, :email, :gender, :birthday,
-      :created_at, :updated_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at
+  show do
+    attributes_table do
+      row :name
+      row :email
+      row :role
+      row :gender
+      row :birthday
+      row :avatar do
+        image_tag user.avatar_url, class: "img-responsive",
+          size: Settings.admin.user_show_avatar if user.avatar?
+      end
+      row :created_at
+      row :updated_at
+      row :sign_in_count
+      row :current_sign_in_at
+      row :current_sign_in_ip
+      row :last_sign_in_at
+      row :last_sign_in_ip
+    end
+
+    active_admin_comments
   end
 
-  sidebar I18n.t("active_admin.training_history"), :only => :show do
+  sidebar I18n.t("active_admin.user_details"), only: :show do
+    attributes_table_for user, :id, :role, :name, :email
+  end
+
+  sidebar I18n.t("active_admin.training_history"), only: :show do
     attributes_table_for user do
       row(I18n.t "active_admin.total_courses") {user.courses.count}
-      row(I18n.t "active_admin.total_subjects") {user.subjects.count}
     end
   end
 
@@ -54,6 +76,8 @@ ActiveAdmin.register User do
         f.input :email
         f.input :gender
         f.input :birthday, as: :datepicker
+        f.input :avatar, as: :file, id: "user_avatar", hint: image_preview(f.object)
+        f.input :avatar_cache, as: :hidden
         f.input :role, as: :select, collection: User::ROLES, include_blank: false,
           selected: "trainee"
         f.input :password

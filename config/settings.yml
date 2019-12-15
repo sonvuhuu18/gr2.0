@@ -1,0 +1,9 @@
+admin:
+  course_image_md: "150x150"
+  course_image_md_data_src: "holder.js/150x150?theme=gray&text=Image"
+  course_image_sm: "50x50"
+  course_image_sm_data_src: "holder.js/50x50?theme=gray&text=Image"
+  user_avatar_md: "150x150"
+  user_avatar_md_data_src: "holder.js/150x150?theme=gray&text=Avatar"
+  user_avatar_sm: "35x35"
+  user_avatar_sm_data_src: "holder.js/35x35?theme=gray&text=Avatar&size=5"

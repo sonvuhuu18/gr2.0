@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require holderjs
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
@@ -18,6 +19,17 @@
 //= require jquery-ui/effect
 //= require jquery-ui/effects/effect-highlight
 //= require_tree .
+
+$(document).on('change', '#user_avatar', function() {
+  var input = document.getElementById('user_avatar');
+  var item = document.getElementById('image_preview');
+  if (input.files && input.files[0])
+    item.src = URL.createObjectURL(input.files[0]);
+  else {
+    item.src = '';
+    Holder.run({item});
+  }
+});
 
 (function() {
   $(document).on('click', '.toggle-window', function(e) {

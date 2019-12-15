@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   ATTRIBUTES_PARAMS = [:name, :email, :password,
-    :password_confirmation, :avatar, :birthday, :gender, :role]
+    :password_confirmation, :avatar, :avatar_cache, :birthday, :gender, :role]
 
   ROLES = %w[admin trainer trainee]
+
+  mount_uploader :avatar, ImageUploader
 
   enum gender: [:female, :male]
 

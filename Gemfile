@@ -24,6 +24,8 @@ gem "mini_magick"
 gem "public_activity"
 gem "redis"
 gem "jquery-ui-rails"
+gem "rails-assets-holderjs", source: "https://rails-assets.org"
+gem "config"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

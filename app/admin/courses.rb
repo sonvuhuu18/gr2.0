@@ -7,6 +7,8 @@ ActiveAdmin.register Course do
   scope :progress_courses
   scope :finish_courses
 
+  config.sort_order = "status_asc"
+
   index do
     id_column
     column :code
@@ -25,7 +27,11 @@ ActiveAdmin.register Course do
       row :id
       row :code
       row :name
-      row :image
+      row :image do course.image.file.filename end
+      row :image do
+        image_tag course.image_url, class: "img-responsive",
+          size: Settings.admin.course_show_image if course.image?
+      end
       row :description
       row :content do
         course.content.html_safe
@@ -36,6 +42,7 @@ ActiveAdmin.register Course do
       row :start_date
       row :end_date
       row :created_at
+      row :updated_at
     end
 
     panel I18n.t("active_admin.subjects") do
@@ -57,7 +64,8 @@ ActiveAdmin.register Course do
         f.inputs "Course Basic" do
           f.input :code
           f.input :name
-          f.input :image
+          f.input :image, as: :file, id: "course_image", hint: image_preview(f.object)
+          f.input :image_cache, as: :hidden
           f.input :description, input_html: {rows: 4}
           f.input :content, as: :ckeditor
           f.input :start_date, as: :datepicker

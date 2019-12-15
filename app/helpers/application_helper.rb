@@ -31,4 +31,21 @@ module ApplicationHelper
       "danger"
     end
   end
+
+  def image_preview object
+    if object.class.name == "User"
+      if object.avatar?
+        image_tag object.avatar_url, id: "image_preview", class: "img-responsive", size: "150x150"
+      else
+        image_tag "", id: "image_preview", data: {src: "holder.js/150x150?theme=gray&text=Avatar"}
+      end
+    else
+      if object.image?
+        image_tag object.image_url, id: "image_preview", class: "img-responsive", size: "150x150"
+      else
+        image_tag "", id: "image_preview", data: {src: "holder.js/150x150?theme=gray&text=Image"}
+      end
+    end
+  end
+
 end
