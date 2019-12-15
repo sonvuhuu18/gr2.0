@@ -11,9 +11,12 @@ class User < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :courses, through: :enrollments, dependent: :destroy
   has_many :feedbacks, dependent: :destroy
+  has_many :conversations, foreign_key: :sender_id
+  has_many :messages, dependent: :destroy
 
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 
+  scope :other_users, ->current_user_id{where.not id: current_user_id}
   scope :superusers, ->{where "role = 'admin' or role = 'trainer'"}
   scope :admins, ->{where "role = 'admin'"}
   scope :trainers, ->{where "role = 'trainer'"}

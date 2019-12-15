@@ -21,6 +21,9 @@ gem "formtastic"
 gem "ckeditor", :git => "git@github.com:galetahub/ckeditor.git"
 gem "carrierwave"
 gem "mini_magick"
+gem "public_activity"
+gem "redis"
+gem "jquery-ui-rails"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

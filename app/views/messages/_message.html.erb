@@ -1,0 +1,15 @@
+<li class="conversation__msg cf">
+  <span class="<%= 'message-sent' if user.id == message.user_id %>">
+    <%= message.content %>
+  </span>
+</li>
+
+<% if false %>
+<li>
+  <div class="row">
+    <div class="<%= user.id == message.user_id ? 'message-sent' : 'message-received' %>">
+      <%= message.content %>
+    </div>
+  </div>
+</li>
+<% end %>

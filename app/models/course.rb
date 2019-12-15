@@ -6,6 +6,7 @@ class Course < ApplicationRecord
   enum status: [:init, :progress, :finish]
 
   validate :check_end_date, on: [:create, :update]
+  validates :code, presence: true, uniqueness: true
   validates :name, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true

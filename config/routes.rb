@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => "/cable"
   mount Ckeditor::Engine => '/ckeditor'
   ActiveAdmin.routes(self)
   devise_for :users
@@ -9,4 +10,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:edit, :update, :show]
   resources :feedbacks
+  resources :conversations, only: [:index, :create] do
+    member do
+      post :close
+    end
+  end
 end

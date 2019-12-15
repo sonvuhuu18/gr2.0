@@ -21,6 +21,8 @@ class Ability
       can :read, Enrollment, user_id: user.id
       can :read, Subject
       can :manage, Feedback, user_id: user.id
+      can :manage, Conversation
+      can :manage, Message, user_id: user.id
     end
   end
 end

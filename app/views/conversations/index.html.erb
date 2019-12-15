@@ -1,0 +1,49 @@
+<button type="button" class="button js-trigger">Chat</button>
+
+<nav class="chat">
+  <h2 class="chat__users">Users: 45</h2>
+  <ul class="chat__wrapper">
+    <% @users.each do |user| %>
+      <%= link_to conversations_path(
+        conversation: {receiver_id: user}), remote: true, method: :post do %>
+        <li class="chat__human">
+          <%= image_tag("http://placehold.it/50x50", class: "chat__avatar") %>
+          <span class="chat__name"><%= user.name %></span>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</nav>
+
+<div id="conversations-list">
+  <% @conversations.each do |conversation| %>
+    <%= render "conversations/conversation", conversation: conversation, user: current_user %>
+  <% end %>
+</div>
+
+<% if false %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">User list</h3>
+  </div>
+  <div class="panel-body">
+    <% @users.each do |user| %>
+      <div class="media">
+        <div class="media-left media-middle">
+          <%= image_tag("http://placehold.it/50x50", class: "chat__avatar") %>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%= link_to user.name, conversations_path(
+            conversation: {receiver_id: user}), remote: true, method: :post %></h4>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div id="conversations-list">
+  <% @conversations.each do |conversation| %>
+    <%= render "conversations/conversation", conversation: conversation, user: current_user %>
+  <% end %>
+</div>
+<% end %>

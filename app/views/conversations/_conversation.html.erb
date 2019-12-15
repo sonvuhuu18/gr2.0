@@ -1,0 +1,49 @@
+<li class="conversation" data-conversation-id="<%= conversation.id %>">
+    <div class="conversation__header">
+      <%= conversation.opposed_user(user).name %>
+      <span class="close-msg"><%= link_to "&times;".html_safe, close_conversation_path(
+        conversation), remote: true, method: :post %></span>
+    </div>
+    <div class="conversation-body">
+      <div class="conversation__wrap messages-list">
+        <ul>
+          <% conversation.messages.each do |message| %>
+            <%= render message, user: user %>
+          <% end %>
+        </ul>
+      </div>
+      <form class="new_message">
+        <input name="conversation_id" type="hidden" value="<%= conversation.id %>">
+        <input name="user_id" type="hidden" value="<%= user.id %>">
+        <input name="content" type="text" placeholder="Type a message" />
+        <input type="submit" class="btn btn-xs btn-success" value="Send">
+      </form>
+    </div>
+</li>
+
+<% if false %>
+<li>
+  <div class="panel panel-default" data-conversation-id="<%= conversation.id %>">
+    <div class="panel-heading">
+      <%= link_to conversation.opposed_user(user).email, "", class: "toggle-window" %>
+      <%= link_to "x", close_conversation_path(conversation), class: "btn btn-default btn-xs pull-right", remote: true, method: :post %>
+    </div>
+
+    <div class="panel-body" style="display: none;">
+      <div class="messages-list">
+        <ul>
+          <% conversation.messages.each do |message| %>
+            <%= render message, user: user %>
+          <% end %>
+        </ul>
+      </div>
+      <form class="new_message">
+        <input name="conversation_id" type="hidden" value="<%= conversation.id %>">
+        <input name="user_id" type="hidden" value="<%= user.id %>">
+        <textarea name="content" class="form-control"></textarea>
+        <input type="submit" class="btn btn-success" value="Send">
+      </form>
+    </div>
+  </div>
+</li>
+<% end %>
