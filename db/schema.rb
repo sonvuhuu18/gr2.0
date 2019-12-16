@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_093421) do
+ActiveRecord::Schema.define(version: 2019_12_15_195324) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,10 +43,49 @@ ActiveRecord::Schema.define(version: 2019_12_10_093421) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "choices", force: :cascade do |t|
+    t.integer "question_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "choice_number"
+    t.index ["question_id"], name: "index_choices_on_question_id"
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sender_id", "receiver_id"], name: "index_conversations_on_sender_id_and_receiver_id", unique: true
+  end
+
+  create_table "course_subjects", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "number_of_question_in_test", default: 0
+    t.index ["course_id"], name: "index_course_subjects_on_course_id"
+    t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
+  end
+
   create_table "courses", force: :cascade do |t|
+    t.string "code"
     t.string "name"
     t.string "image"
     t.text "description"
+    t.text "content"
     t.integer "status", default: 0
     t.date "start_date"
     t.date "end_date"
@@ -54,37 +93,55 @@ ActiveRecord::Schema.define(version: 2019_12_10_093421) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "subjects", force: :cascade do |t|
-    t.string "identifier"
-    t.text "description"
-    t.integer "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_subjects_on_course_id"
-  end
-
-  create_table "user_courses", force: :cascade do |t|
+  create_table "enrollments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "course_id"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_user_courses_on_course_id"
-    t.index ["user_id", "course_id"], name: "index_user_courses_on_user_id_and_course_id", unique: true
-    t.index ["user_id"], name: "index_user_courses_on_user_id"
+    t.boolean "test_passed", default: false
+    t.integer "last_score", default: 0
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id", "course_id"], name: "index_enrollments_on_user_id_and_course_id", unique: true
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
-  create_table "user_subjects", force: :cascade do |t|
+  create_table "feedbacks", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "user_course_id"
+    t.string "title"
+    t.text "content"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
     t.integer "subject_id"
-    t.integer "course_id"
+    t.string "content"
+    t.integer "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_user_subjects_on_course_id"
-    t.index ["subject_id"], name: "index_user_subjects_on_subject_id"
-    t.index ["user_course_id"], name: "index_user_subjects_on_user_course_id"
-    t.index ["user_id"], name: "index_user_subjects_on_user_id"
+    t.index ["subject_id"], name: "index_questions_on_subject_id"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.text "description"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,8 +154,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_093421) do
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
@@ -106,7 +161,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_093421) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

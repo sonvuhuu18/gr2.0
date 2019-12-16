@@ -1,0 +1,12 @@
+<div style="text-align: center;">
+  <h2>
+    Your Score: <%= @score %>/<%=@question_ids.count %>
+  </h2>
+  <% if @passed %>
+    <h4>You passed the test!</h4>
+  <% else %>
+    <h4>You failed the test!</h4>
+    <%= link_to "Test again?", enrollment_attempt_path(@enrollment), class: "btn btn-warning"%><br>
+  <% end %>
+  <%= link_to "Go Back", enrollment_path(@enrollment) %>
+</div>

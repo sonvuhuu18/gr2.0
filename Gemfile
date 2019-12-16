@@ -18,7 +18,17 @@ gem "cancancan"
 gem "inherited_resources"
 gem "activeadmin"
 gem "formtastic"
-
+gem "ckeditor", :git => "git@github.com:galetahub/ckeditor.git"
+gem "carrierwave"
+gem "mini_magick"
+gem "public_activity"
+gem "redis"
+gem "jquery-ui-rails"
+gem "rails-assets-holderjs", source: "https://rails-assets.org"
+gem "config"
+gem "chartkick"
+gem "faker", github: "stympy/faker"
+gem "jquery-countdown-rails"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

@@ -1,0 +1,40 @@
+<%= render "conversations/index" %>
+
+ <div id="user-course-index">
+  <ul class="list">
+    <li class="paths list-item">
+      <i class="glyphicon glyphicon-th-list"></i>
+      <%= link_to t("course.all_courses"), courses_path, class: "link--underline" %>
+    </li>
+  </ul>
+
+   <% if @enrollments.any? %>
+    <div class="row list-course-items">
+      <% @enrollments.each do |enrollment| %>
+        <div class="col-md-4 course-item <%= @course_active_last == enrollment ?
+          'last-actived' : 'normal-course' %>">
+          <div class="path-parent">
+            <div class="badge">
+              <%= trainee_image_md enrollment.course %>
+            </div>
+            <div class="path-content">
+              <div class="path-header"></div>
+              <h2 class="truncate">
+                <%= link_to enrollment.course_name, enrollment %>
+              </h2>
+              <h4>
+                <%= link_to enrollment.course_code, enrollment %>
+              </h4>
+              <p class="path-description">
+                <%= enrollment.course_description %>
+              </p>
+              <span class="prs <%= course_label enrollment.course.status %>">
+                <%= enrollment.course_status %>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
