@@ -18,7 +18,7 @@ gem "cancancan"
 gem "inherited_resources"
 gem "activeadmin"
 gem "formtastic"
-gem "ckeditor", :git => "git@github.com:galetahub/ckeditor.git"
+gem 'ckeditor', github: 'galetahub/ckeditor'
 gem "carrierwave"
 gem "mini_magick"
 gem "public_activity"
