@@ -29,13 +29,31 @@ ActiveAdmin.register Subject do
 
   form do |f|
     f.semantic_errors *f.object.errors.keys
-    f.inputs do
-      f.input :name
-      f.input :image, as: :file, id: "subject_image", hint: image_preview(f.object)
-      f.input :image_cache, as: :hidden
-      f.input :description, input_html: {rows: 4}
-      f.input :content, as: :ckeditor
+    tabs do
+      tab "Subject" do
+        f.inputs do
+          f.input :name
+          f.input :image, as: :file, id: "subject_image", hint: image_preview(f.object)
+          f.input :image_cache, as: :hidden
+          f.input :description, input_html: {rows: 4}
+          f.input :content, as: :ckeditor
+        end
+      end
+
+      tab "Add Test Question" do
+        f.inputs do
+          f.has_many :questions, allow_destroy: true do |q|
+            q.input :content
+            q.has_many :choices, allow_destroy: true do |a|
+              a.input :choice_number
+              a.input :content
+            end
+            q.input :answer
+          end
+        end
+      end
     end
+
     f.actions
   end
 

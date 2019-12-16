@@ -18,6 +18,7 @@
 //= require turbolinks
 //= require jquery-ui/effect
 //= require jquery-ui/effects/effect-highlight
+//= require jquery.countdown
 //= require_tree .
 
 $(document).on('change', '#user_avatar', function() {
@@ -83,3 +84,17 @@ $(document).on('click', '.conversation__header', function(e) {
     messages_list.scrollTop(height);
   }
 });
+
+var countdown = function() {
+  $('#clock').countdown({
+    until: $('#remaining_time').val(),
+    format: 'HMS',
+    onExpiry: function() {
+      alert("Time's up!");
+      document.getElementById('submit-button').click();
+    }
+  });
+}
+
+document.addEventListener('turbolinks:load', countdown);
+$(document).on('page:update', countdown);

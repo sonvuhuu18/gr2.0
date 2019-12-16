@@ -28,6 +28,7 @@ gem "rails-assets-holderjs", source: "https://rails-assets.org"
 gem "config"
 gem "chartkick"
 gem "faker", github: "stympy/faker"
+gem "jquery-countdown-rails"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

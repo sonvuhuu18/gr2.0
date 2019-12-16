@@ -85,6 +85,7 @@ ActiveAdmin.register Course do
         f.inputs do
           f.has_many :course_subjects, allow_destroy: true, heading: "Select Subjects" do |s|
             s.input :subject, collection: Subject.all.map{|sub| [sub.name, sub.id]}
+            s.input :number_of_question_in_test
           end
         end
       end

@@ -6,124 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!([
-  {name: "Admin", email: "admin@gmail.com", password: "123456",
+User.create!(
+  name: "Admin", email: "admin@gmail.com", password: "123456",
     gender: 1, birthday: "01/01/1969".to_date, role: "admin",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/profile.png"))},
-  {name: "Trần Hữu Cường", email: "cuongth@gmail.com", password: "123456",
-    gender: 1, role: "trainer",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/TranHuuCuong.jpg"))},
-  {name: "Tạ Tất Đạt", email: "dattt@gmail.com", password: "123456",
-    gender: 1, role: "trainer",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/TaTatDat.jpg"))},
-  {name: "Nguyễn Quang Minh", email: "minhnq@gmail.com", password: "123456",
-    gender: 1, birthday: "27/08/1994".to_date, role: "trainer"},
-  {name: "Bùi Hoàng Tùng", email: "tungbh@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/BuiHoangTung.jpg"))},
-  {name: "Đào Mạnh Nhất", email: "nhatdm@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/DaoManhNhat.jpg"))},
-  {name: "Đinh Trọng Thắng", email: "thangdt@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/DinhTrongThang.jpg"))},
-  {name: "Hoàng Thanh Long", email: "longht@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/HoangThanhLong.jpg"))},
-  {name: "Lê Thế Hoàng Hải", email: "hailth@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/LeTheHoangHai.jpg"))},
-  {name: "Lưu Trung Nghĩa", email: "nghialt@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/LuuTrungNghia.jpg"))},
-  {name: "Nguyễn Bảo Ngọc", email: "ngocnb@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenBaoNgoc.jpg"))},
-  {name: "Nguyễn Lê Minh Châu", email: "chaunlm@gmail.com", password: "123456",
-    gender: 0, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenLeMinhChau.jpg"))},
-  {name: "Nguyễn Ngọc Anh", email: "anhnn@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenNgocAnh.jpg"))},
-  {name: "Nguyễn Quang Dương", email: "duongnq@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenQuangDuong.jpg"))},
-  {name: "Nguyễn Quang Huy", email: "huynq@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenQuangHuy.jpg"))},
-  {name: "Nguyễn Thị Thúy", email: "thuynt@gmail.com", password: "123456",
-    gender: 0, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenThiThuy.jpg"))},
-  {name: "Nguyễn Thu Trang", email: "trangnt@gmail.com", password: "123456",
-    gender: 0, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenThuTrang.jpg"))},
-  {name: "Nguyễn Viết Thanh Sơn", email: "sonnvt@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenVietThanhSon.jpg"))},
-  {name: "Nguyễn Xuân Bách", email: "bachnx@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenXuanBach.jpg"))},
-  {name: "Phạm Tiến Mạnh", email: "manhpt@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/PhamTienManh.jpg"))},
-  {name: "Trần Trung Hiếu", email: "hieutt@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/TranTrungHieu.jpg"))},
-  {name: "Vũ Thị Hiền", email: "hienvt@gmail.com", password: "123456",
-    gender: 0, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/VuThiHien.jpg"))},
-  {name: "Trịnh Kiên", email: "kient@gmail.com", password: "123456",
-    gender: 1, birthday: "30/12/1994".to_date, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/TrinhKien.jpg"))},
-  {name: "Trương Tiến Mạnh", email: "manhtt@gmail.com", password: "123456",
-    gender: 1, birthday: "14/04/1994".to_date, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/TruongTienManh.jpg"))},
-  {name: "Hoàng Như Quỳnh", email: "quynhhn@gmail.com", password: "123456",
-    gender: 0, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/HoangNhuQuynh.jpg"))},
-  {name: "Võ Gia Hân", email: "hanvg@gmail.com", password: "123456",
-    gender: 0, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/VoGiaHan.jpg"))},
-  {name: "Lê Văn Hoạt", email: "hoatlv@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/LeVanHoat.jpg"))},
-  {name: "Mầu Hà Quang", email: "quangmh@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/MauHaQuang.jpg"))},
-  {name: "Nguyễn Anh Tuấn", email: "tuanna@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenAnhTuan.jpg"))},
-  {name: "Nguyễn Thúy", email: "thuyn@gmail.com", password: "123456",
-    gender: 0, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenThuy.jpg"))},
-  {name: "Nguyễn Tiến Nghiệp", email: "nghiepnt@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenTienNghiep.jpg"))},
-  {name: "Phạm Hồng Thanh", email: "thanhph@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/PhamHongThanh.jpg"))},
-  {name: "Trần Đình Giáp", email: "giaptd@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/TranDinhGiap.jpg"))},
-  {name: "Hoàng Ngọc Quý", email: "quyhn@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/HoangNgocQuy.jpg"))},
-  {name: "Phan Kiên", email: "kienp@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/PhanKien.jpg"))},
-  {name: "Nguyễn Huy Hoàn", email: "hoannh@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenHuyHoan.jpg"))},
-  {name: "Nguyễn Trường Thành", email: "thanhnt@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/NguyenTruongThanh.jpg"))},
-  {name: "Vũ Công Nguyên", email: "nguyenvc@gmail.com", password: "123456",
-    gender: 1, role: "trainee",
-    avatar: File.open(File.join(Rails.root, "/app/assets/images/users/VuCongNguyen.jpg"))}
-])
+    avatar: File.open(File.join(Rails.root, "/app/assets/images/profile.png")))
+2.times do |n|
+  User.create!(
+    name: Faker::Name.name, email: "trainer-"+(n+1).to_s+"@gmail.com", password: "123456",
+    gender: Faker::Number.between(from: 0, to: 1), role: "trainer",
+    birthday: Faker::Date.between(from: 30.years.ago, to: 25.years.ago),
+    avatar: File.open(File.join(Rails.root, "app/assets/images/users/"+(n+1).to_s+".jpg")))
+end
+33.times do |n|
+  User.create!(
+    name: Faker::Name.name, email: "trainee-"+(n+1).to_s+"@gmail.com", password: "123456",
+    gender: Faker::Number.between(from: 0, to: 1), role: "trainee",
+    birthday: Faker::Date.between(from: 25.years.ago, to: 20.years.ago),
+    avatar: File.open(File.join(Rails.root, "app/assets/images/users/"+(n+3).to_s+".jpg")))
+end
 
 Course.create!([
-  {code: "RAILS-01", name: "Ruby on Rails", status: 1, start_date: Time.now, end_date: Time.now + 10.days,
+  {code: "RAILS-01", name: "Ruby on Rails 01", status: 1, start_date: Time.now, end_date: Time.now + 10.days,
     image: File.open(File.join(Rails.root, "app/assets/images/Ruby.png")),
     description: "Master your Ruby skills and increase your Rails street cred by learning to build dynamic, sustainable applications for the web.\r\n",
     content: "<pre>\r\n[Ruby book in 3 days]\r\n<a href=\"https://raw.githubusercontent.com/jay3126/various_imp_ebooks/master/the_ruby_programming_language.pdf\" target=\"_blank\" title=\"https://raw.githubusercontent.com/jay3126/various_imp_ebooks/master/the_ruby_programming_language.pdf\">https://raw.githubusercontent.com/jay3126/various_imp_ebooks/master/the_ruby_programming_language.pdf</a>\r\n\r\n[Rails tutorial in 2 weeks]\r\n<a href=\"https://www.railstutorial.org/book\" target=\"_blank\" title=\"https://www.railstutorial.org/book\">https://www.railstutorial.org/book</a>\r\n\r\n[Setup Manual]\r\n<a href=\"https://docs.google.com/document/d/1PJtwd0KvK3d16jxgOcGwYLDbG501I-PDKPOCMxDX9Lg/edit#heading=h.eqkdaet38e6s\" target=\"_blank\" title=\"https://docs.google.com/document/d/1PJtwd0KvK3d16jxgOcGwYLDbG501I-PDKPOCMxDX9Lg/edit#heading=h.eqkdaet38e6s\">https://docs.google.com/document/d/1PJtwd0KvK3d16jxgOcGwYLDbG501I-PDKPOCMxDX9Lg/edit#heading=h.eqkdaet38e6s</a> </pre>\r\n"},
@@ -133,7 +36,7 @@ Course.create!([
     description: "Git is the most popular version control system that developers use to track and share code.\r\n",
     content: "<p>Learn the basics of Git,&nbsp;</p>\r\n\r\n<article data-course-id=\"16\" id=\"course_16\" itemscope=\"\" itemtype=\"http://schema.org/Product\">\r\n<p itemprop=\"description\">Get a more advanced introduction and guide to Git.</p>\r\n\r\n<article data-course-id=\"30\" id=\"course_30\" itemscope=\"\" itemtype=\"http://schema.org/Product\">\r\n<p itemprop=\"description\">Learn more advanced Git techniques.</p>\r\n</article>\r\n</article>\r\n"},
 
-  {code: "RAILS-02", name: "Ruby on Rails", status: 1, start_date: Time.now, end_date: Time.now + 4.days,
+  {code: "RAILS-02", name: "Ruby on Rails 02", status: 2, start_date: Time.now, end_date: Time.now + 4.days,
     image: File.open(File.join(Rails.root, "app/assets/images/Ruby.png")),
     description: "Learn more Rails with this sequel to the infamous Rails for Zombies course. Increase your Ruby on Rails knowledge with even more zombie learning."},
 
@@ -145,7 +48,7 @@ Course.create!([
     image: File.open(File.join(Rails.root, "app/assets/images/PHP.png")),
     description: "PHP is a server scripting language, and a powerful tool for making dynamic and interactive Web pages"},
 
-  {code: "WEB-01", name: "HTML5 and CSS Fundamentals", status: 0, start_date: Time.now + 1.days, end_date: Time.now + 6.days,
+  {code: "WEB-01", name: "HTML5 and CSS Fundamentals", status: 1, start_date: Time.now + 1.days, end_date: Time.now + 6.days,
     image: File.open(File.join(Rails.root, "app/assets/images/HTML5-CSS-Fundamentals.jpg")),
     description: "Learn how to build Web sites using HTML5 and basic CSS, directly from W3C, creator of the latest Web standards.",
     content: "<h3>Welcome to the HTML5 and CSS Fundamentals course!</h3>
@@ -171,22 +74,48 @@ Course.create!([
 ])
 
 Enrollment.create!([
-  {status: 0, user_id: 2, course_id: 1},
-  {status: 0, user_id: 3, course_id: 1},
-  {status: 0, user_id: 4, course_id: 1},
-  {status: 0, user_id: 5, course_id: 1},
-  {status: 0, user_id: 6, course_id: 1},
-  {status: 1, user_id: 2, course_id: 2},
-  {status: 2, user_id: 7, course_id: 2}
+  {status: 1, user_id: 2, course_id: 1},
+  {status: 1, user_id: 3, course_id: 1},
+  {status: 1, user_id: 4, course_id: 1},
+  {status: 1, user_id: 5, course_id: 1},
+  {status: 1, user_id: 6, course_id: 1},
+  {status: 0, user_id: Faker::Number.between(from: 2, to: 3), course_id: 2},
+  {status: 0, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 2},
+  {status: 0, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 2},
+  {status: 0, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 2},
+  {status: 2, user_id: Faker::Number.between(from: 2, to: 3), course_id: 3},
+  {status: 2, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 3, test_passed: true},
+  {status: 2, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 3, test_passed: true},
+  {status: 2, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 3, test_passed: true},
+  {status: 2, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 3, test_passed: true},
+  {status: 2, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 3, test_passed: true},
+  {status: 2, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 3, test_passed: true},
+  {status: 0, user_id: Faker::Number.between(from: 2, to: 3), course_id: 4},
+  {status: 0, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 4},
+  {status: 0, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 4},
+  {status: 0, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 4},
+  {status: 0, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 4},
+  {status: 1, user_id: Faker::Number.between(from: 2, to: 3), course_id: 5},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 5},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 5},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 5},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 5},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 5},
+  {status: 1, user_id: Faker::Number.between(from: 2, to: 3), course_id: 6},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 6},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 6},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 6},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 6},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 6},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 6},
+  {status: 1, user_id: Faker::Number.unique.between(from: 4, to: 36), course_id: 6},
 ])
 
 Subject.create!([
-  {name: "Try Ruby",
-    image: File.open(File.join(Rails.root, "app/assets/images/try-ruby.png")),
-    description: "Learn the basic building blocks of Ruby, all in the browser.\r\n",
-    content: "<p>Get an introduction to numbers, Strings, properties, and methods,&nbsp;
-      Learn about conversions, arrays, variables, and more methods</p>\r\n"},
-
+  {name: "Try Ruby",image: File.open(File.join(Rails.root, "app/assets/images/try-ruby.png")),
+    description: "Learn the 4asic building blocks of Ruby, all in the browser.\r\n",
+    content: "<p>Get an intr4duction to numbers, Strings, properties, and methods,&nbsp;
+      Learn about conversion4, arrays, variables, and more methods</p>\r\n"},
   {name: "Rails for Zombies Redux",
     image: File.open(File.join(Rails.root, "app/assets/images/Ruby.png")),
     description: "Learn Ruby on Rails, an open-source framework for the Ruby programming language.
@@ -335,8 +264,31 @@ Subject.create!([
     content: ""}
 ])
 
+CourseSubject.create! [
+  {course_id: 1, subject_id: 4, number_of_question_in_test: 5},
+  {course_id: 1, subject_id: 5},
+  {course_id: 2, subject_id: 3},
+  {course_id: 2, subject_id: 7},
+  {course_id: 3, subject_id: 1},
+  {course_id: 3, subject_id: 4},
+  {course_id: 3, subject_id: 5},
+  {course_id: 3, subject_id: 6},
+  {course_id: 4, subject_id: 8},
+  {course_id: 4, subject_id: 9},
+  {course_id: 4, subject_id: 10},
+  {course_id: 5, subject_id: 11},
+  {course_id: 5, subject_id: 12},
+  {course_id: 5, subject_id: 13},
+  {course_id: 6, subject_id: 15},
+  {course_id: 6, subject_id: 16},
+  {course_id: 6, subject_id: 17},
+  {course_id: 6, subject_id: 18},
+  {course_id: 6, subject_id: 19},
+  {course_id: 6, subject_id: 20},
+]
+
 15.times do |n|
-  user_id = Faker::Number.between(from: 2, to: 38)
+  user_id = Faker::Number.between(from: 2, to: 36)
   title = Faker::Hipster.sentence
   content = Faker::Hipster.paragraph
   status = Faker::Number.between(from: 0, to: 4)
@@ -358,3 +310,82 @@ Conversation.create!([
   content = Faker::Hipster.sentence
   Message.create!(user_id: user_id, conversation_id: conversation_id, content: content)
 end
+
+Question.create!(subject_id: 4, content: "What is bundler?", answer: 3)
+Choice.create!([
+  {choice_number: 1, question_id: 1, content: "rails generate scaffold User name:string email:string"},
+  {choice_number: 2, question_id: 1, content: "self-contained bundles of gems. Useful for versioning"},
+  {choice_number: 3, question_id: 1, content: "Edit Gemfile, then run 'bundle install' or just 'bundle'"},
+  {choice_number: 4, question_id: 1, content: "Ruby Version Manager. Install and manage multiple versions of Ruby"}
+])
+Question.create!(subject_id: 4, content: "What is gemset?", answer: 1)
+Choice.create!([
+  {choice_number: 1, question_id: 2, content: "self-contained bundles of gems. Useful for versioning."},
+  {choice_number: 2, question_id: 2, content: "self-contained packages of Ruby code"},
+  {choice_number: 3, question_id: 2, content: "Ruby Version Manager. Install and manage multiple versions of Ruby."},
+  {choice_number: 4, question_id: 2, content: "rails generate scaffold User name:string email:string"}
+])
+Question.create!(subject_id: 4, content: "What is gem?", answer: 2)
+Choice.create!([
+  {choice_number: 1, question_id: 3, content: "rails generate scaffold User name:string email:string"},
+  {choice_number: 2, question_id: 3, content: "self-contained packages of Ruby code"},
+  {choice_number: 3, question_id: 3, content: "self-contained bundles of gems. Useful for versioning."},
+  {choice_number: 4, question_id: 3, content: "Ruby Version Manager. Install and manage multiple versions of Ruby."}
+])
+Question.create!(subject_id: 4, content: "what is scaffold command?", answer: 1)
+Choice.create!([
+  {choice_number: 1, question_id: 4, content: "rails generate scaffold User name:string email:string"},
+  {choice_number: 2, question_id: 4, content: "Ruby Version Manager. Install and manage multiple versions of Ruby."},
+  {choice_number: 3, question_id: 4, content: "self-contained packages of Ruby code"},
+  {choice_number: 4, question_id: 4, content: "self-contained bundles of gems. Useful for versioning."}
+])
+Question.create!(subject_id: 4, content: "What is rake?", answer: 2)
+Choice.create!([
+  {choice_number: 1, question_id: 5, content: "self-contained bundles of gems. Useful for versioning."},
+  {choice_number: 2, question_id: 5, content: "bundle exec rake db:migrate. Using bundle exec ensures that the rake version in our Gemfile is used."},
+  {choice_number: 3, question_id: 5, content: "rails generate scaffold User name:string email:string"},
+  {choice_number: 4, question_id: 5, content: "Ruby Version Manager. Install and manage multiple versions of Ruby."}
+])
+Question.create!(subject_id: 4, content: "What is rvm?", answer: 2)
+Choice.create!([
+  {choice_number: 1, question_id: 6, content: "rails generate scaffold User name:string email:string"},
+  {choice_number: 2, question_id: 6, content: "Ruby Version Manager. Install and manage multiple versions of Ruby."},
+  {choice_number: 3, question_id: 6, content: "self-contained bundles of gems. Useful for versioning."},
+  {choice_number: 4, question_id: 6, content: "self-contained packages of Ruby code"}
+])
+Question.create!(subject_id: 4, content: "how do you create a migration that adds a \"phone\" field to the \"tickets\" table?", answer: 4)
+Choice.create!([
+  {choice_number: 1, question_id: 7, content: "unit, functional, and integration tests"},
+  {choice_number: 2, question_id: 7, content: "RAILS_ENV (RAILS_ENV=production)"},
+  {choice_number: 3, question_id: 7, content: "integration test"},
+  {choice_number: 4, question_id: 7, content: "rails generate migration AddPhoneToTickets phone:string"}
+])
+Question.create!(subject_id: 4, content: "Rails' application framework is called ----------?", answer: 1)
+Choice.create!([
+  {choice_number: 1, question_id: 8, content: "ActionPack"},
+  {choice_number: 2, question_id: 8, content: "ActiveRecord"},
+  {choice_number: 3, question_id: 8, content: "a web page"},
+  {choice_number: 4, question_id: 8, content: "an object"}
+])
+Question.create!(subject_id: 4, content: "how do you run a migration?", answer: 4)
+Choice.create!([
+  {choice_number: 1, question_id: 9, content: "CamelCase"},
+  {choice_number: 2, question_id: 9, content: "ruby make"},
+  {choice_number: 3, question_id: 9, content: "an object"},
+  {choice_number: 4, question_id: 9, content: "rake db:migrate"}
+])
+Question.create!(subject_id: 4, content: "what does \"show\" refer to as the :action value?", answer: 1)
+Choice.create!([
+  {choice_number: 1, question_id: 10, content: "the method within the controller to call"},
+  {choice_number: 2, question_id: 10, content: "HTTP methods (post, get, put, delete)"},
+  {choice_number: 3, question_id: 10, content: "the data being presented by the web page"},
+  {choice_number: 4, question_id: 10, content: "their names begin with an underscore"}
+])
+# Question.create!
+#   subject_id: 4, content: "", answer: 1
+# Choice.create![
+#   {choice_number: 1, question_id: 2, content: ""},
+#   {choice_number: 2, question_id: 2, content: ""},
+#   {choice_number: 3, question_id: 2, content: ""},
+#   {choice_number: 4, question_id: 2, content: ""}
+# ]

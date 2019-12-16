@@ -21,10 +21,12 @@ ActiveAdmin.register Enrollment do
     column :user
     column :course
     column :status do |enrollment| status_tag enrollment.status end
+    column :test_passed
     actions
   end
 
   filter :user_name_cont, label: I18n.t("active_admin.user_name")
+  filter :course_name_cont, label: "Course name"
   filter :status, as: :select, collection: Enrollment.statuses
 
   batch_action :start do |ids|
@@ -48,6 +50,7 @@ ActiveAdmin.register Enrollment do
       row :course
       row :user
       row :status do status_tag enrollment.status end
+      row :test_passed
       row :created_at
       row :updated_at
     end

@@ -65,6 +65,16 @@
         </div>
         <div class="grid-box grid-box-25 sector">
           <div class="well well--l">
+            <% if @course.progress? %>
+              <div>
+                <% if @enrollment.test_passed %>
+                  Test Passed, score: <%= @enrollment.last_score %>/<%= @number_of_questions_in_test%>
+                <% else %>
+                  <%= link_to "Take the test", enrollment_attempt_path(@enrollment), class: "btn btn-primary"%>
+                  <div style="text-align: center">Last Score: <%= @enrollment.last_score%>/<%= @number_of_questions_in_test%></div>
+                <% end %>
+              </div>
+            <% end %>
             <div class="card">
               <div id="image-course">
                 <%= trainee_image_lg @course %>

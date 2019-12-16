@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   resources :courses, only: [:index, :show]
   resources :subjects, only: [:show]
   resources :enrollments, :show
+  resources :enrollments do
+    get "/attempt", to: "test_attempts#attempt"
+    post "/get_result", to: "test_attempts#get_result"
+  end
 end

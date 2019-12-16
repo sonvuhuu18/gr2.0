@@ -1,0 +1,25 @@
+<h2 style="text-align:center">Test for <%= @enrollment.course.name %></h2>
+<div class="row">
+  <%= hidden_field_tag :remaining_time, @remaining_time %>
+  <div class="timer col-md-offset-4 col-md-4">
+    <h4>Remaining Time</h4>
+    <div id="clock"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-offset-2">
+    <%= form_tag enrollment_get_result_path, method: :post do %>
+      <% @questions.each_with_index do |q, index| %>
+        <%= (index+1).to_s %>.<%= label_tag(q.content) %><br>
+        <% q.choices.each do |choice| %>
+          <%= radio_button_tag "attempt_answers[#{q.id}]", choice.choice_number %><%= choice.content %><br>
+        <% end %>
+      <% end %>
+      <%= hidden_field_tag :question_ids, @question_ids %>
+      <div class="row" style="margin-left: 21em">
+        <%= submit_tag "Submit", class: "btn btn-primary", id: "submit-button" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

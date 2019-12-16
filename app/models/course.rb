@@ -1,7 +1,7 @@
 class Course < ApplicationRecord
   ATTRIBUTES_PARAMS = [:code, :name, :image, :image_cache, :description, :status,
     :start_date, :end_date, user_ids: [],
-    course_subjects_attributes: [:id, :course_id, :subject_id, :_destroy]]
+    course_subjects_attributes: [:id, :course_id, :subject_id, :number_of_question_in_test, :_destroy]]
 
   mount_uploader :image, ImageUploader
 
