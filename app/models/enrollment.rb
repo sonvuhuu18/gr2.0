@@ -12,6 +12,6 @@ class Enrollment < ApplicationRecord
   scope :init_enrollments, ->{where status: :init}
   scope :progress_enrollments, ->{where status: :progress}
   scope :finish_enrollments, ->{where status: :finish}
-  scope :active_trainee_courses, ->{joins(:user).where QUERY}
-  QUERY = "users.role = 'trainee' AND (status = 0 OR status = 1)"
+  scope :active_trainee_courses, ->{joins(:user).where(QUERY).joins(:course).where("course_id = courses.id")}
+  QUERY = "users.role = 'trainee' AND (enrollments.status = 0 OR enrollments.status = 1)"
 end

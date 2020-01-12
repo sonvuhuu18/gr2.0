@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def show
-    @user_courses = @user.user_courses
-    @inprogress_course = @user_courses.progress_user_courses.last
-    @finished_courses = @user_courses.finish_user_courses
+    @enrollments = @user.enrollments
+    @inprogress_course = @enrollments.progress_enrollments.last
+    @finished_courses = @enrollments.finish_enrollments
   end
 
   def edit

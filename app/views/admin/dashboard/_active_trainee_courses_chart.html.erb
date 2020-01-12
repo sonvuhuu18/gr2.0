@@ -1,2 +1,2 @@
-<%= column_chart Enrollment.active_trainee_courses.group(:course_id).count,
-  xtitle: "Course Id", ytitle: "Number of Trainees" %>
+<%= column_chart Enrollment.active_trainee_courses.group("courses.name").count,
+  xtitle: "Course Name", ytitle: "Number of Trainees" %>

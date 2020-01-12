@@ -1,9 +1,9 @@
 <li class="list-group-item finished_course">
   <dl class="dl-horizontal">
     <dt><strong><%= t "course.code" %></strong></dt>
-    <dd><%= link_to user_course.course_code, user_course_path(user_course) %></dd>
+    <dd><%= link_to user_course.course_code, enrollment_path(user_course) %></dd>
     <dt><strong><%= t "course.name" %></strong></dt>
-    <dd><%= link_to user_course.course_name, user_course_path(user_course) %></dd>
+    <dd><%= link_to user_course.course_name, enrollment_path(user_course) %></dd>
     <dt><strong><%= t "course.description" %></strong></dt>
     <dd><%= user_course.course_description %></dd>
 
